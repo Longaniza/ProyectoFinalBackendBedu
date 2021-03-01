@@ -1,7 +1,6 @@
-/* Clase que representa a una zona de la plataforma*/
 class Zona {
-    constructor() {
-
-    }
+  constructor(id, nombreZona) {
+      this.id = id;
+      this.nombreZona = nombreZona;
   }
-module.exports = Zona;
+}

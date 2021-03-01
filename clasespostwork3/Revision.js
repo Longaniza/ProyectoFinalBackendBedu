@@ -6,20 +6,4 @@ class Revision {
         this.descripcion = descripcion;
         this.fecha = fecha;
     }
-    static visualizarRevisiones() {
-        //
-    }
-    visualizarRevision() {
-        //
-    }
-    crearRevision() {
-        //
-    }
-    editarRevision() {
-        //
-    }
-    eliminarRevision() {
-
-    }
-
 }
