@@ -50,7 +50,7 @@ El equipo número 13 siente una particular admiración por los animales en todas
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.jpg)
 
 ## Modelo Relacional
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/modeloRelacional.jpg)
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
 
 ## Primera versión estructura de clases
 Las clases establecidas para el postwork3 se encuentran en la siguiente [zona del repositorio](https://github.com/Longaniza/ProyectoFinalBackendBedu/tree/master/clasespostwork3)
