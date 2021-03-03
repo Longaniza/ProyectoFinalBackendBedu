@@ -46,8 +46,11 @@ El equipo número 13 siente una particular admiración por los animales en todas
 
 21. Como administrador quiero ELIMINAR zonas del zoológico para no tenerlas en lista en caso de ser clausuradas.
 
-## Primera versión de diagrama de entidades
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Bedu.jpeg)
+## Modelo ER
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.jpg)
+
+## Modelo Relacional
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/modeloRelacional.jpg)
 
 ## Primera versión estructura de clases
 Las clases establecidas para el postwork3 se encuentran en la siguiente [zona del repositorio](https://github.com/Longaniza/ProyectoFinalBackendBedu/tree/master/clasespostwork3)

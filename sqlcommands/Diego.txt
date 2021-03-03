@@ -1,0 +1,63 @@
+/* Creando tabla empleado con sus atributos */
+CREATE TABLE empleado(
+	idEmpleado VARCHAR(100) NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR(50) NOT NULL,
+	fotoUrl VARCHAR(200), 
+	fechaNacimiento DATE NOT NULL,
+	apellidoPaterno VARCHAR(50) NOT NULL,
+	sexo CHAR(1),
+	categoriaEmpleado VARCHAR(20)NOT NULL,
+	status CHAR(1) NOT NULL DEFAULT "A",
+	PRIMARY KEY(idEmpleado)
+	
+);
+
+/* Insertando datos en nuestra tabla empleados*/
+INSERT INTO empleado(nombre, fotoUrl, fechaNacimiento, apellidoPaterno, sexo, categoriaEmpleado) VALUES(
+	"Diego",
+	"https://www.online-stopwatch.com/picture-pickers/magic-mirror/",
+	"1999-09-20",
+	"Morales",
+	"M",
+	"Cuidador"
+),(
+	"Jose",
+	"http://placekitten.com/180/200",
+	"1999-07-15",
+	"Ivanov",
+	"M",
+	"Cuidador"
+),(
+	"Felipe",
+	"http://placekitten.com/280/320",
+	"2000-01-02",
+	"de Jesus Rivera",
+	"M",
+	"Veterinario"
+),(
+	"Mariano",
+	"http://placekitten.com/180/200",
+	"1999-09-20",
+	"Mendoza",
+	"M",
+	"Cuidador"
+);
+	
+
+
+
+
+
+
+INSERT INTO empleado(nombre, fechaNacimiento, apellidoPaterno, sexo, categoriaEmpleado) VALUES(
+	"Giovanni",
+	"1999-09-20",
+	"Sánchez",
+	"M",
+	"Veterinario"
+);
+
+
+
+/*Mostrando la información de empleados*/
+SELECT * from empleado;
