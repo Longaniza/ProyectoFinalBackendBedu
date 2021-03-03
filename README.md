@@ -72,5 +72,9 @@ El equipo número 13 siente una particular admiración por los animales en todas
 ### Tabla observacion
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/observaciontable.png)
 
-## Primera versión estructura de clases
-Las clases establecidas para el postwork3 se encuentran en la siguiente [zona del repositorio](https://github.com/Longaniza/ProyectoFinalBackendBedu/tree/master/clasespostwork3)
+## Script SQL necesario para la creacion de la base de datos
+Estando ya dentro de la terminal,y asegurando que nos encontramos en el mismo directorio donde se encuentra nuestro script SQL, correr el siguiente comando:
+``` 
+source database.sql;
+```
+El script en cuestion es el llamado [database.sql](https://github.com/Longaniza/ProyectoFinalBackendBedu/blob/master/database.sql).
