@@ -1,0 +1,28 @@
+use Zoo;
+
+/* Creación de la tabla animal con los atributos correspondientes */
+CREATE TABLE animal(
+    idAnimal INT NOT NULL AUTO_INCREMENT,
+    idEspecie INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    sexo CHAR(1) NOT NULL,
+    fechaNacimiento DATE,
+    status CHAR(1) NOT NULL DEFAULT 'A', 
+    PRIMARY KEY (idZona),
+    FOREIGN KEY (idEspecie) REFERENCES especie(idEspecie)
+);
+
+/* Muestra la información relaciionada con la tabla animal */
+describe animal;
+
+/* Inserción de 5 registros a la tabla animal:
+Utilizamos 'H' para referirnos a una hembra y M para un macho */
+INSERT INTO animal (idEspecie, nombre, sexo, fechaNacimiento)
+VALUES (1, 'Manta', 'H', '2000-12-09'),
+       (2, 'Verdell', 'M', '2005-03-11'),
+       (2, 'Flipper', 'M', '2003-12-03'),
+       (5, 'Chita', 'H', '2009-08-07'),
+       (5, 'Jaimico', 'M', '2012-03-06');
+
+/* Muestra todos los registros guardados en la tabla animal */
+SELECT * FROM animal;
