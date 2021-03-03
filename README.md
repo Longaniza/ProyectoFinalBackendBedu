@@ -1,34 +1,56 @@
-# ProyectoFinalBackendBedu
+# 🫀 Proyecto Backend Fundamentals
 
-1. Como administrador quiero registrar empleados para tener un control sobre ellos.
+El equipo número 13 siente una particular admiración por los animales en todas sus formas, por lo cual se propone hacer un API basado en un zoológico. Esperamos que con este proyecto se puedan hacer ciertas acciones, las cuales serán explicadas más a detalle con ayuda de historias de usuario. De forma general se puede mencionar que esperamos que gracias a esta API, los usuarios visitantes puedan visualizar especies y sus respectivas zonas en el zoológico; así como un usuario administrador pueda controlar informes y observaciones hechas por empleados del zoo, los cuales pueden ser cuidadores o veterinarios. Estos mismos podrán registrar sus respectivos informes.
 
-2. Como administrador quiero registrar usuarios visitantes para tener un control de entradas y salidas.
+## Historias de usuario: 
 
-3. Como administrador quiero registrar animales para saber cuantos tengo para tener control en unidades de cada especie.
+1. Como administrador quiero CREAR empleados para tener un control sobre ellos.
 
-4. Como administrador quiero registrar especies de animales para saber cuantas especies tengo.
+2. Como administrador quiero CREAR animales para saber cuantos tengo para tener control en unidades de cada especie.
 
-5. Como administrador quiero registrar zonas del zoologico para que mis visitantes tengan conocimiento sobre en que zona se encuentra cada especie.
+3. Como administrador quiero CREAR especies de animales para saber cuántas especies tengo.
 
-6. Como empleado cuidador quiero registrar informacion de revisiones para notificar al veterinario sobre la salud del animal.
+4. Como administrador quiero CREAR zonas del zoológico para que mis visitantes tengan conocimiento sobre en qué zona se encuentra cada especie.
 
-7. Como empleado cuidador quiero registrar informacion de observaciones clinicas para notificar al veterinario si pasa algo más con la salud del animal.
+5. Como empleado cuidador quiero CREAR información de revisiones para notificar al zoológico sobre la información de una zona.
 
-8. Como administrador quiero VISUALIZAR una lista de empleados en base a uno de sus atributos para tener mejor reconocimiento de ellos.
+6. Como empleado veterinario quiero CREAR información de observaciones clínicas para notificar al zoológico si pasa algo malo con la salud de un animal.
 
-9. Como administrador quiero VISUALIZAR una lista de usuarios en base a uno de sus
-atributos para en caso de accidentes/altercados saber quienes son.
+7. Como administrador quiero VISUALIZAR una lista de empleados en base a uno de sus atributos para tener mejor reconocimiento de ellos.
 
-10. Como administrador quiero VISUALIZAR una lista de revisiones hechas por los empleados
-para saber que es lo que le paso al animal.
+8. Como administrador quiero VISUALIZAR una lista de revisiones hechas por los empleados para saber qué es lo que le pasó al animal.
 
-11. Como administrador quiero VISUALIZAR una lista de observaciones hechas por los
-empleados para saber el progreso de salud del animal.
+9. Como administrador quiero VISUALIZAR una lista de observaciones clínicas hechas por los empleados para saber el progreso de salud del animal.
 
-12. Como usuario quiero visualizar una lista de animales en base a uno de sus atributos para identificarlos de los demás.
+10. Como usuario quiero VISUALIZAR una lista de animales en base a uno de sus atributos para identificarlos de los demás.
 
-13. Como usuario quiero visualizar una lista de especies de animales en base a uno de sus
-atributos para conocer más acerca de la especie.
+11. Como usuario quiero VISUALIZAR una lista de especies de animales en base a uno de sus atributos para conocer más acerca de la especie.
 
-14. Como usuario quiero visualizar una lista de zonas del zoológico en base a uno de sus
-atributos para diferenciarla de las demás zonas.
+12. Como usuario quiero VISUALIZAR una lista de zonas del zoológico con las especies que habitan en ella para diferenciarla de las demás zonas.
+
+13. Como usuario quiero visualizar información general de cada una de las especies existentes para conocer información interesante sobre ellas.
+
+14. Como administrador quiero EDITAR empleados para tener un control sobre ellos.
+
+15. Como administrador quiero EDITAR animales para cambiar su información en caso de ser necesario.  
+
+16. Como administrador quiero EDITAR especies de animales para relacionarlas con los animales.
+
+17. Como administrador quiero EDITAR zonas del zoológico para cambiar su información en caso de ser necesario. 
+ 
+18. Como administrador quiero ELIMINAR empleados para tener un control sobre ellos.
+
+19. Como administrador quiero ELIMINAR animales para no tenerlos en lista en caso de ser transferidos.
+
+20. Como administrador quiero ELIMINAR especies de animales para no tenerlos en lista en caso de que ya no haya esas especies.
+
+21. Como administrador quiero ELIMINAR zonas del zoológico para no tenerlas en lista en caso de ser clausuradas.
+
+## Modelo ER
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.jpg)
+
+## Modelo Relacional
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/modeloRelacional.jpg)
+
+## Primera versión estructura de clases
+Las clases establecidas para el postwork3 se encuentran en la siguiente [zona del repositorio](https://github.com/Longaniza/ProyectoFinalBackendBedu/tree/master/clasespostwork3)
