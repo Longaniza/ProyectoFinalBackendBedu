@@ -1,7 +1,9 @@
-/* Clase que representa a un animal de la plataforma*/
 class Animal {
-    constructor() {
-
-    }
+  constructor(id, idEspecie, nombre, sexo) {
+      this.id = id;
+      this.idEspecie = idEspecie;
+      this.nombre = nombre;
+      this.sexo = sexo;
   }
+}
 module.exports = Animal;
