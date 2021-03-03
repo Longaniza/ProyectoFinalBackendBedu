@@ -52,5 +52,25 @@ El equipo número 13 siente una particular admiración por los animales en todas
 ## Modelo Relacional
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
 
+## Tablas creadas con SQL
+
+### Tabla empleado
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/empleadotable.png)
+
+### Tabla zona
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/zonatable.png)
+
+### Tabla especie
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/especietable.png)
+
+### Tabla animal
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/animaltable.png)
+
+### Tabla revision
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/revisiontable.png)
+
+### Tabla observacion
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/observaciontable.png)
+
 ## Primera versión estructura de clases
 Las clases establecidas para el postwork3 se encuentran en la siguiente [zona del repositorio](https://github.com/Longaniza/ProyectoFinalBackendBedu/tree/master/clasespostwork3)
