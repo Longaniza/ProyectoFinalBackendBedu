@@ -1,0 +1,48 @@
+/* Comenzamos creando las tablas con los atributos correspondinetes */
+
+CREATE TABLE revision (
+	idRevision INT NOT NULL AUTO_INCREMENT,
+	idEmpleado INT NOT NULL,
+	idZona INT NOT NULL,
+	descripcion VARCHAR(100) NOT NULL,
+	fecha DATETIME NOT NULL,
+	status CHAR(1) NOT NULL DEFAULT 'A',
+	PRIMARY KEY (idRevision),
+	FOREIGN KEY (idEmpleado) REFERENCES empleado(idEmpleado),
+	FOREIGN KEY (idZona) REFERENCES zona(idZona)
+);
+
+CREATE TABLE observacion (
+	idObservacion INT NOT NULL AUTO_INCREMENT,
+	idEmpleado INT NOT NULL,
+	idAnimal INT NOT NULL,
+	obervaciones VARCHAR(50) NOT NULL,
+	fecha DATETIME NOT NULL,
+	status CHAR(1) NOT NULL DEFAULT 'A',
+	PRIMARY KEY (idObervacion),
+	FOREIGN KEY (idEmpelado) REFERENCES empleado(idEmpleado),
+	FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal)
+);
+
+/* Utilizamos un comando para desplegar la información de cada entidad */
+describe revision;
+describe obervacion;
+
+/* Incertamos 5 registros a cada una de las tablas */
+INSERT INTO revision(idEmpleado, idZona, descripcion, fecha)
+VALUES (1, 1, 'Desparacitación programada', NOW()),
+       (1, 1, 'Vacunas programadas', NOW()),
+       (2, 1, 'Examen general programado', NOW()),
+       (4, 2, 'Vacunas programadas', NOW()),
+       (4, 2, 'Sin revision', NOW());
+
+INSERT INTO observacion(idEmpleado, idAnimal, observacion, fecha)
+VALUES (2, 1, 'Sin observaciones', NOW()),
+       (2, 1, 'Progrmar examen general', NOW()),
+       (2, 3, 'Sin observaciones', NOW()),
+       (5, 4, 'Programar desparacitación', NOW()),
+       (5, 4, 'Progrmar vacunas', NOW());
+
+/* Mostramos todos los registros guardados en las tablas */
+SELECT * FROM revision;
+SELECT * FROM observacion;
