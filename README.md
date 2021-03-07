@@ -72,6 +72,26 @@ La decisión fue algo complicada, pero al final lo utilizado será un modelo de 
 ## Modelo Relacional
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
 
+## Entidades creadas como colecciones en mongoDB - Postwork6
+
+### Coleccion empleado
+![]()
+
+### Coleccion zona
+![]()
+
+### Coleccion especie
+![]()
+
+### Coleccion animal
+![]()
+
+### Coleccion revision
+![]()
+
+### Coleccion observacion
+![]()
+
 ## Tablas creadas con SQL
 
 ### Tabla empleado
