@@ -66,8 +66,6 @@ SQL puede ser rígido al momento de establecer un diseño para una base de datos
 
 La decisión fue algo complicada, pero al final lo utilizado será un modelo de base de datos relacionales, SQL. El principal punto a favor, es que varios integrantes ya están familiarizados con esta forma de guardar datos, además de la gran cantidad de recursos en internet, debido a la cantidad de años que SQL lleva en el mercado. Creemos que SQL nos ofrece lo necesario para hacer una correcta y rápida implementación para así, poner en funcionamiento nuestra API de zoológico.
 
-
-
 ## Modelo ER
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.jpg)
 
@@ -94,7 +92,61 @@ La decisión fue algo complicada, pero al final lo utilizado será un modelo de 
 ### Tabla observacion
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/observaciontable.png)
 
+
+### +50 registros iniciales
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/registrosinicialestablas.png)
+
+
+### 5 consultas complejas iniciales 
+Consulta para obtener especies y su zona
+``` 
+SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona 
+FROM especie 
+LEFT JOIN zona 
+ON especie.idZona = zona.idZona 
+WHERE especie.status = 'A';
+```
+Consulta para obtener la cantidad de especies por zona
+``` 
+SELECT nombreZona,COUNT(*) AS cantidadEspeciesPorZona  
+FROM (SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona 
+      FROM especie 
+      LEFT JOIN zona 
+      ON especie.idZona = zona.idZona 
+      WHERE especie.status = 'A') 
+AS selec 
+GROUP BY nombreZona;
+```
+Consulta para obtener observaciones y su informacion de otras tablas
+``` 
+SELECT observaciones,fecha,animal.nombre AS nombreAnimal,empleado.nombre AS empleadoNombre,apellidoPaterno 
+FROM observacion 
+JOIN empleado 
+ON observacion.idEmpleado = empleado.idEmpleado 
+JOIN animal 
+ON observacion.idAnimal = animal.idAnimal;
+```
+Consulta para obtener revisiones y su informacion de otras tablas
+``` 
+SELECT revision.descripcion AS observacionDescripcion,fecha,nombreZona,
+nombre as nombreEmpleado,apellidoPaterno 
+FROM revision 
+JOIN empleado 
+ON revision.idEmpleado = empleado.idEmpleado 
+JOIN zona 
+ON revision.idZona = zona.idZona;
+```
+Consulta para obtener animales y su especie
+``` 
+SELECT animal.nombre as nombreAnimal,especie.nombre AS nombreEspecie,nombreCientifico,sexo,fechaNacimiento FROM animal 
+LEFT JOIN especie 
+ON especie.idEspecie = animal.idEspecie 
+WHERE animal.status = 'A';
+```
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/consultascomplejasiniciales.png)
+
 ## Script SQL necesario para la creacion de la base de datos
+El script siguiente incluye la creacion de la base de datos, el poblado de mas de 50 registros y 5 consultas complejas.
 Estando ya dentro de la terminal,y asegurando que nos encontramos en el mismo directorio donde se encuentra nuestro script SQL, correr el siguiente comando:
 ``` 
 source database.sql;
