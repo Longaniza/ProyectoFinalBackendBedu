@@ -75,22 +75,22 @@ La decisión fue algo complicada, pero al final lo utilizado será un modelo de 
 ## Entidades creadas como colecciones en mongoDB - Postwork6
 
 ### Coleccion empleado
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoempleados.jpg)
 
 ### Coleccion zona
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongozonas.jpg)
 
 ### Coleccion especie
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoespecies.jpg)
 
 ### Coleccion animal
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoanimales.jpg)
 
 ### Coleccion revision
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongorevisiones.jpg)
 
 ### Coleccion observacion
-![]()
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoobservaciones.jpg)
 
 ## Tablas creadas con SQL
 
