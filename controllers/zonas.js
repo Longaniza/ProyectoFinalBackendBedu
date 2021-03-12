@@ -1,8 +1,12 @@
 const Zona = require('../models/Zona')
 
-function crearZona(req, res) {
-    let zona = new Zona(req.body)
-    res.status(201).send(zona)
+function crearZona(req, res,next) {
+    // construye una instancia del modelo Usuario con los argumentos que recibe en la petición
+    const usr = Zona.build(req.body);
+    // Guarda esta instancia, es hasta este momento que se modifica la base de datos.
+    usr.save().then(user => {
+        return res.status(201).json(user.toAuthJSON())
+    }).catch(next);
 }
 
 function obtenerZonas(req, res) {
@@ -13,7 +17,7 @@ function obtenerZonas(req, res) {
 }
 
 function modificarZona(req, res) {
-    let zona1 =  new Zona(1, "Zona1")
+    let zona1 = new Zona(1, "Zona1")
     let modificaciones = req.body
     zona1 = { ...zona1, ...modificaciones }
     res.send(zona1)
