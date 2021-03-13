@@ -23,7 +23,11 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-const sequelize = new Sequelize('mysql://urikwzjpplzzlfmn:Mb0IQrCVF8Sh4iK2i73G@bjxwq0uwifz3tl7mxfmk-mysql.services.clever-cloud.com:3306/bjxwq0uwifz3tl7mxfmk');
+const sequelize = new Sequelize('bjxwq0uwifz3tl7mxfmk', 'urikwzjpplzzlfmn','Mb0IQrCVF8Sh4iK2i73G', {
+    host: 'bjxwq0uwifz3tl7mxfmk-mysql.services.clever-cloud.com',
+    dialect: 'mysql',
+});
+
 sequelize.authenticate()
     .then(() => {
         console.log('Its alive!!!!');
