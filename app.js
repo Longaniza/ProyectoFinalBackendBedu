@@ -23,10 +23,10 @@ app.use(function (req, res, next) {
 });
 
 const connection = mysql.createConnection({
-    host: 'bjxwq0uwifz3tl7mxfmk-mysql.services.clever-cloud.com',
-    user: 'urikwzjpplzzlfmn',
-    password: 'Mb0IQrCVF8Sh4iK2i73G',
-    database: 'bjxwq0uwifz3tl7mxfmk'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 connection.connect();
