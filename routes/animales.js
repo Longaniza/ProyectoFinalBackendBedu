@@ -5,7 +5,7 @@ const {
     getAnimalById,
     updateAnimal,
     deleteAnimal,
-} = require('../controllers/observaciones')
+} = require('../controllers/animales')
 
 router.get('/',getAnimalesBySeletedFields);
 router.get('/:idAnimal',getAnimalById);

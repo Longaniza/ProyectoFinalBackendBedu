@@ -5,7 +5,7 @@ const {
     getRevisionById,
     updateRevision,
     deleteRevision,
-} = require('../controllers/observaciones')
+} = require('../controllers/revisiones')
 
 router.get('/', getRevisionesBySeletedFields);
 router.get('/:idRevision', getRevisionById);

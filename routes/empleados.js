@@ -5,7 +5,7 @@ const {
     getEmpleadoById,
     updateEmpleado,
     deleteEmpleado,
-} = require('../controllers/zonas')
+} = require('../controllers/empleados')
 
 router.get('/', getEmpleadosBySeletedFields);
 router.get('/:idEmpleado', getEmpleadoById);

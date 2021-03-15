@@ -5,7 +5,7 @@ const {
     getEspecieById,
     updateEspecie,
     deleteEspecie,
-} = require('../controllers/observaciones')
+} = require('../controllers/especies')
 
 router.get('/',getEspeciesBySeletedFields);
 router.get('/:idEspecie',getEspecieById);
