@@ -72,98 +72,10 @@ La decisión fue algo complicada, pero al final lo utilizado será un modelo de 
 ## Modelo Relacional
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
 
-## Entidades creadas como colecciones en mongoDB - Postwork6
-
-### Coleccion empleado
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoempleados.jpg)
-
-### Coleccion zona
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongozonas.jpg)
-
-### Coleccion especie
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoespecies.jpg)
-
-### Coleccion animal
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoanimales.jpg)
-
-### Coleccion revision
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongorevisiones.jpg)
-
-### Coleccion observacion
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/mongoobservaciones.jpg)
-
 ## Tablas creadas con SQL
-
-### Tabla empleado
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/empleadotable.png)
-
-### Tabla zona
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/zonatable.png)
-
-### Tabla especie
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/especietable.png)
-
-### Tabla animal
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/animaltable.png)
-
-### Tabla revision
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/revisiontable.png)
-
-### Tabla observacion
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/observaciontable.png)
-
 
 ### +50 registros iniciales
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/registrosinicialestablas.png)
-
-
-### 5 consultas complejas iniciales 
-Consulta para obtener especies y su zona
-``` 
-SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona 
-FROM especie 
-LEFT JOIN zona 
-ON especie.idZona = zona.idZona 
-WHERE especie.status = 'A';
-```
-Consulta para obtener la cantidad de especies por zona
-``` 
-SELECT nombreZona,COUNT(*) AS cantidadEspeciesPorZona  
-FROM (SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona 
-      FROM especie 
-      LEFT JOIN zona 
-      ON especie.idZona = zona.idZona 
-      WHERE especie.status = 'A') 
-AS selec 
-GROUP BY nombreZona;
-```
-Consulta para obtener observaciones y su informacion de otras tablas
-``` 
-SELECT observaciones,fecha,animal.nombre AS nombreAnimal,empleado.nombre AS empleadoNombre,apellidoPaterno 
-FROM observacion 
-JOIN empleado 
-ON observacion.idEmpleado = empleado.idEmpleado 
-JOIN animal 
-ON observacion.idAnimal = animal.idAnimal;
-```
-Consulta para obtener revisiones y su informacion de otras tablas
-``` 
-SELECT revision.descripcion AS observacionDescripcion,fecha,nombreZona,
-nombre as nombreEmpleado,apellidoPaterno 
-FROM revision 
-JOIN empleado 
-ON revision.idEmpleado = empleado.idEmpleado 
-JOIN zona 
-ON revision.idZona = zona.idZona;
-```
-Consulta para obtener animales y su especie
-``` 
-SELECT animal.nombre as nombreAnimal,especie.nombre AS nombreEspecie,nombreCientifico,sexo,fechaNacimiento FROM animal 
-LEFT JOIN especie 
-ON especie.idEspecie = animal.idEspecie 
-WHERE animal.status = 'A';
-```
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/consultascomplejasiniciales.png)
 
 ## Script SQL necesario para la creacion de la base de datos
 El script siguiente incluye la creacion de la base de datos, el poblado de mas de 50 registros y 5 consultas complejas.
