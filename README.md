@@ -85,3 +85,6 @@ Estando ya dentro de la terminal,y asegurando que nos encontramos en el mismo di
 source database.sql;
 ```
 El script en cuestion es el llamado [database.sql](https://github.com/Longaniza/ProyectoFinalBackendBedu/blob/master/database.sql).
+
+## Swagger con informacion del API
+[swagger](https://app.swaggerhub.com/apis/ZooApp/Zoo/1.0.0?fbclid=IwAR1QoobEnJqMZkosQ-Z9Sm_l9rmiQx5Qs6q-fdr9Q31CHP1J_3kwzmXHaQY&loggedInWithGitHub=true)
