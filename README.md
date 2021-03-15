@@ -73,9 +73,10 @@ La decisión fue algo complicada, pero al final lo utilizado será un modelo de 
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
 
 ## Tablas creadas con SQL
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/tablasiniciales.png)
 
 ### +50 registros iniciales
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/registrosinicialestablas.png)
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/registrosiniciales.png)
 
 ## Script SQL necesario para la creacion de la base de datos
 El script siguiente incluye la creacion de la base de datos, el poblado de mas de 50 registros y 5 consultas complejas.
