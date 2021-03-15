@@ -1,36 +1,65 @@
-//Importando el modelo de empleados
-const Empleado = require('../models/Empleado')
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-function crearEmpleado(req, res) {
-    //Instanciando un nuevo empleado utilizando la clase empleado
-    let empleado = new Empleado(req.body)
-    res.status(201).send(empleado)
+function createEmpleado(req, res) {
+    create(req.body, 'empleado').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
 }
 
-function obtenerEmpleados(req, res) {
-    //Simulando dos empleados y respondiendolos
-    let empleado1 = new Empleado(1, 'Diego', '23', 'Morales', 'hombre', 'cuidador')
-    let empleado2 = new Empleado(2, 'Jose', '21', 'Ivanov', 'hombre', 'veterinario')
-    res.send([empleado1, empleado2])
+function getEmpleadosBySeletedFields(req, res) {
+    queryBySelectedFields('empleado', req.query)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
+}
+function getEmpleadoById(req, res) {
+    queryById('empleado', req.params.idEmpleado)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function modificarEmpleado(req, res) {
-    //Simulando un empleado previamente existente que el administrador modifica
-    let empleado1 = new Empleado(req.params.id, 'Diego', '23', 'Morales', 'hombre', 'cuidador')
-    let modificaciones = req.body
-    empleado1 = { ...empleado1, ...modificaciones }
-    res.send(empleado1)
+function updateEmpleado(req, res) {
+    update('empleado', req.params.idEmpleado, req.query)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function eliminarEmpleado(req, res) {
-    //Se simula una eliminacion de usuario, regresando un 200
-    res.status(200).send(`Empleado ${req.params.id} eliminado`)
+function deleteEmpleado(req, res) {
+    deleteItem('empleado', req.params.idEmpleado)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-//Exportando funciones definidas
 module.exports = {
-    crearEmpleado,
-    obtenerEmpleados,
-    modificarEmpleado,
-    eliminarEmpleado
+    createEmpleado,
+    getEmpleadosBySeletedFields,
+    getEmpleadoById,
+    updateEmpleado,
+    deleteEmpleado,
 }

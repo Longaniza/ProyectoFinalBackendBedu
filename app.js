@@ -1,12 +1,11 @@
 // Importamos las bibliotecas necesarias
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    cors = require('cors');
-var Sequelize = require('sequelize')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mysql = require('mysql2');
 
 // Objeto global de la app
-var app = express();
-
+const app = express();
 
 // Configuración de middlewares
 app.use(cors());
@@ -23,19 +22,21 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-const sequelize = new Sequelize('bjxwq0uwifz3tl7mxfmk', 'urikwzjpplzzlfmn','Mb0IQrCVF8Sh4iK2i73G', {
+const connection = mysql.createConnection({
     host: 'bjxwq0uwifz3tl7mxfmk-mysql.services.clever-cloud.com',
-    dialect: 'mysql',
+    user: 'urikwzjpplzzlfmn',
+    password: 'Mb0IQrCVF8Sh4iK2i73G',
+    database: 'bjxwq0uwifz3tl7mxfmk'
 });
 
-sequelize.authenticate()
-    .then(() => {
-        console.log('Its alive!!!!');
-    })
-    .catch(err => {
-        console.log('No se conecto :(')
-    })
-// Iniciando el servidor...
-var server = app.listen(process.env.PORT || 3000, function () {
+connection.connect();
+
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+});
+global.db = connection;
+
+const server = app.listen(process.env.PORT || 3000, function () {
     console.log('Escuchando en el puerto ' + server.address().port);
 });

@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const {
-    crearRevision,
-    obtenerRevisiones,
-    modificarRevision,
-    eliminarRevision
-} = require('../controllers/revisiones')
+    createRevision,
+    getRevisionesBySeletedFields,
+    getRevisionById,
+    updateRevision,
+    deleteRevision,
+} = require('../controllers/observaciones')
 
-router.get('/', obtenerRevisiones)
-router.post('/', crearRevision)
-router.put('/', modificarRevision)
-router.delete('/', eliminarRevision)
+router.get('/', getRevisionesBySeletedFields);
+router.get('/:idRevision', getRevisionById);
+router.post('/', createRevision)
+router.put('/:idRevision', updateRevision)
+router.delete('/:idRevision', deleteRevision)
 
 module.exports = router;

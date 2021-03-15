@@ -2,13 +2,12 @@ CREATE DATABASE zoo;
 USE zoo;
 CREATE TABLE empleado(
 	idEmpleado INT NOT NULL AUTO_INCREMENT,
-	nombre VARCHAR(50) NOT NULL,
-	fotoUrl VARCHAR(200), 
-	fechaNacimiento DATE NOT NULL,
+	nombreEmpleado VARCHAR(50) NOT NULL,
+	fotoUrlEmpleado VARCHAR(200), 
+	fechaNacimientoEmpleado DATE NOT NULL,
 	apellidoPaterno VARCHAR(50) NOT NULL,
-	sexo CHAR(1),
+	sexoEmpleado CHAR(1),
 	categoriaEmpleado VARCHAR(20)NOT NULL,
-	status CHAR(1) NOT NULL DEFAULT "A",
 	PRIMARY KEY(idEmpleado)
 	
 );
@@ -16,29 +15,26 @@ CREATE TABLE zona (
 	idZona INT NOT NULL AUTO_INCREMENT,	
 	nombreZona VARCHAR(50) NOT NULL UNIQUE,
 	fechaInauguracion DATE,
-	descripcion VARCHAR(100),
-	status CHAR(1) NOT NULL DEFAULT 'A',
+	descripcionZona VARCHAR(100),
 	PRIMARY KEY (idZona)
 );
 CREATE TABLE especie (
 	idEspecie INT NOT NULL AUTO_INCREMENT,
 	idZona INT,	
-	nombre VARCHAR(50) NOT NULL UNIQUE,
+	nombreEspecie VARCHAR(50) NOT NULL UNIQUE,
 	nombreCientifico VARCHAR(100) NOT NULL UNIQUE,
-	fotoUrl VARCHAR(200),
+	fotoUrlEspecie VARCHAR(200),
 	longevidad INT,
 	distribucionGeografica VARCHAR(100),
-	status CHAR(1) NOT NULL DEFAULT 'A',
 	PRIMARY KEY (idEspecie),
  	FOREIGN KEY(idZona) REFERENCES zona(idZona)
 );
 CREATE TABLE animal(
     idAnimal INT NOT NULL AUTO_INCREMENT,
     idEspecie INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL UNIQUE,
-    sexo CHAR(1) NOT NULL,
-    fechaNacimiento DATE,
-    status CHAR(1) NOT NULL DEFAULT 'A', 
+    nombreAnimal VARCHAR(50) NOT NULL UNIQUE,
+    sexoAnimal CHAR(1) NOT NULL,
+    fechaNacimientoAnimal DATE,
     PRIMARY KEY (idAnimal),
     FOREIGN KEY (idEspecie) REFERENCES especie(idEspecie)
 );
@@ -46,9 +42,8 @@ CREATE TABLE revision (
 	idRevision INT NOT NULL AUTO_INCREMENT,
 	idEmpleado INT NOT NULL,
 	idZona INT NOT NULL,
-	descripcion VARCHAR(300) NOT NULL,
-	fecha DATETIME NOT NULL,
-	status CHAR(1) NOT NULL DEFAULT 'A',
+	descripcionRevision VARCHAR(300) NOT NULL,
+	fechaRevision DATETIME NOT NULL,
 	PRIMARY KEY (idRevision),
 	FOREIGN KEY (idEmpleado) REFERENCES empleado(idEmpleado),
 	FOREIGN KEY (idZona) REFERENCES zona(idZona)
@@ -58,8 +53,7 @@ CREATE TABLE observacion (
 	idEmpleado INT NOT NULL,
 	idAnimal INT NOT NULL,
 	observaciones VARCHAR(300) NOT NULL,
-	fecha DATETIME NOT NULL,
-	status CHAR(1) NOT NULL DEFAULT 'A',
+	fechaObservacion DATETIME NOT NULL,
 	PRIMARY KEY (idObservacion),
 	FOREIGN KEY (idEmpleado) REFERENCES empleado(idEmpleado),
 	FOREIGN KEY (idAnimal) REFERENCES animal(idAnimal)
@@ -70,7 +64,7 @@ describe especie;
 describe animal;
 describe revision;
 describe observacion;
-INSERT INTO zona (nombreZona,fechaInauguracion,descripcion)
+INSERT INTO zona (nombreZona,fechaInauguracion,descripcionZona)
 VALUES ('Acuario','2000-01-02','Zona de animales marinos'),
        ('Cascada','2000-01-02','Zona basada en Oaxaca'),
        ('Safari','2000-01-02','Zona basada en la sabana Africana'),
@@ -80,7 +74,7 @@ VALUES ('Acuario','2000-01-02','Zona de animales marinos'),
        ('Bosques templados','2000-01-02','Basado en el norte de America'),
        ('Granja','2000-01-02','Zona con animales de granja'),
        ('Mundo reptilia','2000-01-02','Zona de reptiles');
-INSERT INTO especie (idZona,nombre,nombreCientifico, fotoUrl, longevidad, distribucionGeografica)
+INSERT INTO especie (idZona,nombreEspecie,nombreCientifico, fotoUrlEspecie, longevidad, distribucionGeografica)
 VALUES (1,'Mantarraya','Mobula birostris', 'https://bit.ly/38ejdrS', 12, 'Oceano pasifico'),
        (1,'Delfin','Delphinidae', 'https://bit.ly/38groDL', 35, 'Regiones marinas tropicales '),
        (2,'Leon','Panthera leo', 'https://bit.ly/3sWiuU1', 29, 'Africa central y oriental'),
@@ -90,7 +84,7 @@ VALUES (1,'Mantarraya','Mobula birostris', 'https://bit.ly/38ejdrS', 12, 'Oceano
        (3, 'Jirafa', 'Giraffa camelopardalis', 'https://bit.ly/3sQlqBm', 40, 'Zonas abiertas de África al sur'),
        (6, 'Escorpión', 'Heloderma horridum horridum', 'https://bit.ly/3ccpKUS', 23, 'Desde el sur de Sinaloa hasta Chiapas'),
        (4, 'Pez cirujano', 'Pez cirujano', 'https://bit.ly/3c9lp4N', 12, 'Regiones marinas tropicales y subtropicales');
-INSERT INTO empleado(nombre, fotoUrl, fechaNacimiento, apellidoPaterno, sexo, categoriaEmpleado) VALUES(
+INSERT INTO empleado(nombreEmpleado, fotoUrlEmpleado, fechaNacimientoEmpleado, apellidoPaterno, sexoEmpleado, categoriaEmpleado) VALUES(
     "Diego",
     "http://placekitten.com/180/123",
     "1999-09-20",
@@ -154,7 +148,7 @@ INSERT INTO empleado(nombre, fotoUrl, fechaNacimiento, apellidoPaterno, sexo, ca
     "F",
     "Cuidador"
 );
-INSERT INTO animal (idEspecie, nombre, sexo, fechaNacimiento)
+INSERT INTO animal (idEspecie, nombreAnimal, sexoAnimal, fechaNacimientoAnimal)
 VALUES (1, 'Manta', 'H', '2000-12-09'),
        (2, 'Verdell', 'M', '2005-03-11'),
        (2, 'Flipper', 'M', '2003-12-03'),
@@ -164,7 +158,7 @@ VALUES (1, 'Manta', 'H', '2000-12-09'),
        (6, 'Heiko', 'M', '2012-02-21'),
        (4, 'Grass', 'M', '2012-09-15'),
        (4, 'Sen', 'M', '2012-07-19');
-INSERT INTO revision(idEmpleado, idZona, descripcion, fecha)
+INSERT INTO revision(idEmpleado, idZona, descripcionRevision, fechaRevision)
 VALUES (3, 1, 'Desparacitación programada', NOW()),
        (3, 1, 'Vacunas programadas', NOW()),
        (3, 1, 'Examen general programado', NOW()),
@@ -176,7 +170,7 @@ VALUES (3, 1, 'Desparacitación programada', NOW()),
        (3, 2, 'Revición completa', NOW()),
        (7, 2, 'Medicamento asignado', NOW());
 
-INSERT INTO observacion(idEmpleado, idAnimal, observaciones, fecha)
+INSERT INTO observacion(idEmpleado, idAnimal, observaciones, fechaObservacion)
 VALUES (2, 8, 'Sin observaciones', NOW()),
        (1, 5, 'Progrmar examen general', NOW()),
        (5, 3, 'Sin observaciones', NOW()),
@@ -192,8 +186,8 @@ SELECT * FROM especie;
 SELECT * FROM animal;
 SELECT * FROM revision;
 SELECT * FROM observacion;
-SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona FROM especie LEFT JOIN zona ON especie.idZona = zona.idZona WHERE especie.status = 'A';
-SELECT nombreZona,COUNT(*) AS cantidadEspeciesPorZona  FROM (SELECT nombre,nombreCientifico,fotoUrl,longevidad,distribucionGeografica,nombreZona FROM especie LEFT JOIN zona ON especie.idZona = zona.idZona WHERE especie.status = 'A') AS selec GROUP BY nombreZona;
-SELECT observaciones,fecha,animal.nombre AS nombreAnimal,empleado.nombre AS empleadoNombre,apellidoPaterno FROM observacion JOIN empleado ON observacion.idEmpleado = empleado.idEmpleado JOIN animal ON observacion.idAnimal = animal.idAnimal;
-SELECT revision.descripcion AS observacionDescripcion,fecha,nombreZona,nombre as nombreEmpleado,apellidoPaterno FROM revision JOIN empleado ON revision.idEmpleado = empleado.idEmpleado JOIN zona ON revision.idZona = zona.idZona;
-SELECT animal.nombre as nombreAnimal,especie.nombre AS nombreEspecie,nombreCientifico,sexo,fechaNacimiento FROM animal LEFT JOIN especie ON especie.idEspecie = animal.idEspecie WHERE animal.status = 'A';
+SELECT nombreEspecie,nombreCientifico,fotoUrlEspecie,longevidad,distribucionGeografica,nombreZona FROM especie JOIN zona ON especie.idZona = zona.idZona;
+SELECT nombreZona,COUNT(*) AS cantidadEspeciesPorZona  FROM (SELECT nombreEspecie,nombreCientifico,fotoUrlEspecie,longevidad,distribucionGeografica,nombreZona FROM especie LEFT JOIN zona ON especie.idZona = zona.idZona) AS selec GROUP BY nombreZona;
+SELECT observaciones,fechaObservacion,nombreAnimal,nombreEmpleado,apellidoPaterno FROM observacion JOIN empleado ON observacion.idEmpleado = empleado.idEmpleado JOIN animal ON observacion.idAnimal = animal.idAnimal;
+SELECT descripcionRevision,fechaRevision,nombreZona,nombreEmpleado,apellidoPaterno FROM revision JOIN empleado ON revision.idEmpleado = empleado.idEmpleado JOIN zona ON revision.idZona = zona.idZona;
+SELECT nombreAnimal,nombreEspecie,nombreCientifico,sexoAnimal,fechaNacimientoAnimal FROM animal JOIN especie ON especie.idEspecie = animal.idEspecie;

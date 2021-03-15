@@ -1,35 +1,65 @@
-/*  Archivo controllers/usuarios.js
- *  Simulando la respuesta de objetos Usuario
- *  en un futuro aquí se utilizarán los modelos
- */
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-// importamos el modelo de usuarios
-const Especie = require('../models/Especie')
+function createEspecie(req, res) {
+    create(req.body, 'especie').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
+}
 
-function crearEspecie(req, res) {
-    // Instanciaremos un nuevo usuario utilizando la clase usuario
-    var especie = new Especie(req.body);
-    res.status(201).send(especie);
+function getEspeciesBySeletedFields(req, res) {
+    queryBySelectedFields('especie', req.query, ['idEspecie', 'idZona'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
-function obtenerEspecies(req, res) {
-    var especie1 = new Especie(1, 'Gato', 'Felis silvestris catus');
-    var especie2 = new Especie(2, 'Gatito', 'Felis silvestris catus');
-    res.send([especie1, especie2]);
+function getEspecieById(req, res) {
+    queryById('especie', req.params.idEspecie)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
-function modificarEspecie(req, res) {
-    var especie1 = new Especie(req.params.id, 'Gato', 'Felis silvestris catus');
-    var modificaciones = req.body;
-    especie1 = { ...especie1, ...modificaciones };
-    res.send(especie1);
+
+function updateEspecie(req, res) {
+    update('especie', req.params.idEspecie, req.query, ['idZona'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
-function eliminarEspecie(req, res) {
-    // se simula una eliminación de usuario, regresando un 200
-    res.status(200).send(`Mascota ${req.params.id} eliminada`);
+
+function deleteEspecie(req, res) {
+    deleteItem('especie', req.params.idEspecie)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
-// exportamos las funciones definidas
+
 module.exports = {
-    crearEspecie,
-    obtenerEspecies,
-    modificarEspecie,
-    eliminarEspecie
+    createEspecie,
+    getEspeciesBySeletedFields,
+    getEspecieById,
+    updateEspecie,
+    deleteEspecie,
 }

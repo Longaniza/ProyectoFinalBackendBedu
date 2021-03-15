@@ -1,35 +1,65 @@
-const Zona = require('../models/Zona')
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-function crearZona(req, res,next) {
-    // construye una instancia del modelo Usuario con los argumentos que recibe en la petición
-    const usr = Zona.build(req.body);
-    // Guarda esta instancia, es hasta este momento que se modifica la base de datos.
-    usr.save().then(user => {
-        return res.status(201).json(user.toAuthJSON())
-    }).catch(next);
+function createZona(req, res) {
+    create(req.body, 'zona').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
 }
 
-function obtenerZonas(req, res) {
-    id, nombreZona
-    let zona1 = new Zona(1, "Zona1")
-    let zona2 = new Zona(2, "Acuario")
-    res.send([zona1, zona2])
+function getZonasBySeletedFields(req, res) {
+    queryBySelectedFields('zona', req.query)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
+}
+function getZonaById(req, res) {
+    queryById('zona', req.params.idZona)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function modificarZona(req, res) {
-    let zona1 = new Zona(1, "Zona1")
-    let modificaciones = req.body
-    zona1 = { ...zona1, ...modificaciones }
-    res.send(zona1)
+function updateZona(req, res) {
+    update('zona', req.params.idZona,req.query)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function eliminarZona(req, res) {
-    res.status(200).send(`Zona ${req.params.id} eliminada`)
+function deleteZona(req, res) {
+    deleteItem('zona', req.params.idZona)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
 module.exports = {
-    crearZona,
-    obtenerZonas,
-    modificarZona,
-    eliminarZona
+    createZona,
+    getZonasBySeletedFields,
+    getZonaById,
+    updateZona,
+    deleteZona,
 }

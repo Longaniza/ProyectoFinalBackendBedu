@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const {
-    crearObservacion,
-    obtenerObservaciones,
-    modificarObservacion,
-    eliminarObservacion
+    createObservacion,
+    getObservacionesBySeletedFields,
+    getObservacionById,
+    updateObservacion,
+    deleteObservacion,
 } = require('../controllers/observaciones')
 
-router.get('/', obtenerObservaciones)
-router.post('/', crearObservacion)
-router.put('/', modificarObservacion)
-router.delete('/', eliminarObservacion)
+router.get('/',getObservacionesBySeletedFields);
+router.get('/:idObservacion',getObservacionById);
+router.post('/',createObservacion)
+router.put('/:idObservacion', updateObservacion)
+router.delete('/:idObservacion', deleteObservacion)
 
 module.exports = router;

@@ -1,30 +1,65 @@
-const Animal = require('../models/Animal')
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-function crearAnimal(req, res) {
-    let animal = new Animal(req.body)
-    res.status(201).send(animal)
+function createAnimal(req, res) {
+    create(req.body, 'animal').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
 }
 
-function obtenerAnimales(req, res) {
-    let animal1 = new Animal(1, 40, "Pedro", "M")
-    let animal2 = new Animal(2, 40, "Fernanda", "F")
-    res.send([animal1, animal2])
+function getAnimalesBySeletedFields(req, res) {
+    queryBySelectedFields('animal', req.query, ['idAnimal', 'idEspecie'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
+}
+function getAnimalById(req, res) {
+    queryById('animal', req.params.idAnimal)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function modificarAnimal(req, res) {
-    let animal1 = new Animal(req.params.id, 40, "Pedro", "M")
-    let modificaciones = req.body
-    animal1 = { ...animal1, ...modificaciones }
-    res.send(animal1)
+function updateAnimal(req, res) {
+    update('animal', req.params.idAnimal, req.query, ['idEspecie'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function eliminarAnimal(req, res) {
-    res.status(200).send(`Animal ${req.params.id} eliminado`)
+function deleteAnimal(req, res) {
+    deleteItem('animal', req.params.idAnimal)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
 module.exports = {
-    crearAnimal,
-    obtenerAnimales,
-    modificarAnimal,
-    eliminarAnimal
+    createAnimal,
+    getAnimalesBySeletedFields,
+    getAnimalById,
+    updateAnimal,
+    deleteAnimal,
 }

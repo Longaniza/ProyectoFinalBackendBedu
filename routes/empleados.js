@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const {
-    crearEmpleado,
-    obtenerEmpleados,
-    modificarEmpleado,
-    eliminarEmpleado
-} = require('../controllers/empleados')
+    createEmpleado,
+    getEmpleadosBySeletedFields,
+    getEmpleadoById,
+    updateEmpleado,
+    deleteEmpleado,
+} = require('../controllers/zonas')
 
-router.get('/', obtenerEmpleados)
-router.post('/', crearEmpleado)
-router.put('/', modificarEmpleado)
-router.delete('/', eliminarEmpleado)
+router.get('/', getEmpleadosBySeletedFields);
+router.get('/:idEmpleado', getEmpleadoById);
+router.post('/', createEmpleado)
+router.put('/:idEmpleado', updateEmpleado)
+router.delete('/:idEmpleado', deleteEmpleado)
 
 module.exports = router;

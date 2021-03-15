@@ -1,31 +1,65 @@
-const Revision = require('../models/Revision')
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-function crearRevision(req, res) {
-    let revision = new Revision(req.body)
-    res.status(201).send(revision)
+function createRevision(req, res) {
+    create(req.body, 'revision').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
 }
 
-function obtenerRevisiones(req, res) {
-    let revision1 = new Revision(1, 55, 45, "La zona esta limpia", "01/01/1990")
-    let revision2 = new Revision(2, 55, 76, "Todo perfecto", "01/01/1990")
-    res.send([revision1, revision2])
+function getRevisionesBySeletedFields(req, res) {
+    queryBySelectedFields('revision', req.query, ['idRevision', 'idEmpleado', 'idZona'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
+}
+function getRevisionById(req, res) {
+    queryById('revision', req.params.iRevision)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function modificarRevision(req, res) {
-    let revision1 = new Revision(req.params.id, 55, 76, "El panda se ve enfermo", "01/01/1990")
-    let modificaciones = req.body
-    revision1 = { ...revision1, ...modificaciones }
-    res.send(revision1)
+function updateRevision(req, res) {
+    update('revision', req.params.idRevision, req.query, ['idEmpleado', 'idZona'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function eliminarRevision(req, res) {
-    res.status(200).send(`Revision ${req.params.id} eliminada`)
+function deleteRevision(req, res) {
+    deleteItem('revision', req.params.idRevision)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
 module.exports = {
-    crearRevision,
-    obtenerRevisiones,
-    modificarRevision,
-    eliminarRevision
+    createRevision,
+    getRevisionesBySeletedFields,
+    getRevisionById,
+    updateRevision,
+    deleteRevision,
 }
-//

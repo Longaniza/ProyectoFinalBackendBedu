@@ -1,30 +1,65 @@
-const Observacion = require('../models/Observacion')
+const create = require('../helpers/create');
+const deleteItem = require('../helpers/delete');
+const { queryBySelectedFields, queryById } = require('../helpers/query');
+const update = require('../helpers/update');
 
-function crearObservacion(req, res) {
-    let observacion = new Observacion(req.body)
-    res.status(201).send(observacion)
+function createObservacion(req, res) {
+    create(req.body, 'observacion').then(results => {
+        return res.json(req.body);
+    }).catch(err => {
+        res.status(400).json({
+            Error: err.sqlMessage
+        })
+    });
 }
 
-function obtenerObservaciones(req, res) {
-    let observacion1 = new Observacion(1, 55, 45, "El panda se ve enfermo", "01/01/1990")
-    let observacion2 = new Observacion(2, 55, 76, "El leon tiene lastimada una pierna", "01/01/1990")
-    res.send([observacion1, observacion2])
+function getObservacionesBySeletedFields(req, res) {
+    queryBySelectedFields('observacion', req.query, ['idObservacion', 'idEmpleado', 'idAnimal'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
+}
+function getObservacionById(req, res) {
+    queryById('observacion', req.params.idObservacion)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function modificarObservacion(req, res) {
-    let observacion1 = new Observacion(req.params.id, 55, 76, "El panda se ve enfermo", "01/01/1990")
-    let modificaciones = req.body
-    observacion1 = { ...observacion1, ...modificaciones }
-    res.send(observacion1)
+function updateObservacion(req, res) {
+    update('observacion', req.params.idObservacion, req.query,['idEmpleado', 'idAnimal'])
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
-function eliminarObservacion(req, res) {
-    res.status(200).send(`Observacion ${req.params.id} eliminado`)
+function deleteObservacion(req, res) {
+    deleteItem('observacion', req.params.idObservacion)
+        .then(results => {
+            return res.json(results);
+        }).catch(err => {
+            res.status(400).json({
+                Error: err.sqlMessage
+            })
+        });
 }
 
 module.exports = {
-    crearObservacion,
-    obtenerObservaciones,
-    modificarObservacion,
-    eliminarObservacion
+    createObservacion,
+    getObservacionesBySeletedFields,
+    getObservacionById,
+    updateObservacion,
+    deleteObservacion,
 }
