@@ -22,20 +22,33 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-const connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
-});
+function handleDisconnect() {
+    const connection = mysql.createConnection({
+        host: process.env.HOST,
+        user: process.env.USER,
+        password: process.env.PASSWORD,
+        database: process.env.DATABASE
+    });
 
-connection.connect();
+    connection.connect(function (err) {
+        if (err) {
+            console.log('error when connecting to db:', err);
+            setTimeout(handleDisconnect, 2000);
+        }
+    });
+    global.db = connection;
+    connection.on('error', function (err) {
+        console.log('db error', err);
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            handleDisconnect();
+        } else {
+            throw err;
+        }
+    });
+}
 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
-});
-global.db = connection;
+handleDisconnect();
+
 
 const server = app.listen(process.env.PORT || 3000, function () {
     console.log('Escuchando en el puerto ' + server.address().port);
