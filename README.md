@@ -67,10 +67,10 @@ SQL puede ser rígido al momento de establecer un diseño para una base de datos
 La decisión fue algo complicada, pero al final lo utilizado será un modelo de base de datos relacionales, SQL. El principal punto a favor, es que varios integrantes ya están familiarizados con esta forma de guardar datos, además de la gran cantidad de recursos en internet, debido a la cantidad de años que SQL lleva en el mercado. Creemos que SQL nos ofrece lo necesario para hacer una correcta y rápida implementación para así, poner en funcionamiento nuestra API de zoológico.
 
 ## Modelo ER
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.jpg)
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/ER.png)
 
 ## Modelo Relacional
-![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.jpg)
+![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/Relacional.png)
 
 ## Tablas creadas con SQL
 ![](https://raw.githubusercontent.com/Longaniza/ProyectoFinalBackendBedu/master/assets/imgs/tablasiniciales.png)
